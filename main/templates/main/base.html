@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Mercado SimCompanies</title>
+
+  {% include "includes/css.html" %}
+</head>
+<body>
+  {% include "includes/menu.html" %}
+
+  <main role="main" class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">{% block title %}{% endblock title %}</h1>
+        <p class="text-center">{% block description %}{% endblock description %}</p>
+      </div>
+    </div>
+    {% block content %}{% endblock content %}
+  </main>
+  {% include "includes/js.html" %}
+</body>
+</html>

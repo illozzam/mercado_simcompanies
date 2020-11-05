@@ -1,0 +1,56 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+
+{% block title %}Cadastro{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <div class="card">
+          <div class="card-body">
+
+            <form action="#" method="post">
+              {% csrf_token %}
+
+              <div class="row my-2">
+                <div class="col-12">
+                  <p>
+                    <img src="{% static 'img/logo.png' %}" alt="Mercado SimCompanies" style="width: 32px;">
+                    <span>Mercado SimCompanies</span>
+                  </p>
+                  <p>
+                    Formulário de Cadastro
+                  </p>
+                </div>
+              </div>
+
+              <table class="w-100">
+                {{form.as_table}}
+
+                <tr>
+                  <td colspan="2">
+                    <a href="{% url 'authentication:login' %}" class="btn btn-default">Voltar</a>
+                    <input type="submit" value="Enviar" class="btn btn-dark">
+                  </td>
+                </tr>
+              </table>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block js %}
+  <script>
+    $('input[type="text"], input[type="email"], input[type="password"]').addClass('form-control')
+  </script>
+{% endblock js %}

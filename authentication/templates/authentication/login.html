@@ -1,0 +1,55 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
+{% endblock css %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+    Logado como: {{request.user.email}}<br><br>
+    <a href="{% url 'auth:logout' %}" class="btn btn-primary">Sair</a>
+  {% else %}
+    <div class="container-fluid">
+      <form class="form-signin" method="POST" action="{% url 'authentication:login' %}">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-12">
+            <img src="{% static 'img/logo.png' %}" style="width: 32px;">
+            <span>Mercado SimCompanies</span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <table>
+              {{form.as_table}}
+            </table>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            Não tem cadastro? <a href="{% url 'authentication:user-create' %}">Cadastre-se!</a>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <button class="btn btn-lg btn-dark btn-block" type="submit">Entrar</button>
+            <p class="mt-5 mb-3 text-muted">&copy;<a href="https://www.mazzollisistemas.com.br" target='_blank'>Mazzolli Sistemas</a> - 2020</p>
+            <p class="my-2 text-muted">
+              <a href="#" target='_blank'>TERMO DE PRIVACIDADE</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  {% endif %}
+{% endblock content %}
+
+{% block js %}
+  <script type="text/javascript">
+    $('#id_username').addClass('form-control')
+    $('#id_password').addClass('form-control')
+  </script>
+{% endblock js %}
