@@ -21,8 +21,7 @@
             <th class="text-center">Preço</th>
           </tr>
 
-          <form method="post" action="{% url 'market:buy' %}">
-            {% csrf_token %}
+          <form method="get" action="{% url 'market:buy' %}">
             <tr>
               <td class="text-center">
                 <button class="btn btn-danger" type="reset" title="Limpar formulário"><i class="fas fa-times-circle"></i></button>
