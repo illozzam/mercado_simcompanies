@@ -8,11 +8,11 @@ class UserAdmin(DjangoUserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
     model = User
-    list_display = ('email', 'is_staff', 'is_active', 'company_name', 'telegram')
+    list_display = ('email', 'is_staff', 'is_active', 'thumbnail_logo', 'company_name', 'telegram')
     list_editable = ('is_staff', 'is_active', 'company_name', 'telegram')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Data and Company', {'fields': ('first_name', 'last_name', 'company_name', 'telegram')}),
+        ('Personal Data and Company', {'fields': ('first_name', 'last_name', 'company_logo', 'company_name', 'telegram')}),
         ('Contract', {'fields': ('contract',)}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )

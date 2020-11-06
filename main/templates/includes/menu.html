@@ -6,10 +6,10 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item{% if page == 'buy' %} active{% endif %}">
         <a class="nav-link" href="{% url 'market:buy' %}">Quero Comprar</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item{% if page == 'sell' %} active{% endif %}">
         <a class="nav-link" href="{% url 'market:sell' %}">Quero Vender</a>
       </li>
       <li class="nav-item">

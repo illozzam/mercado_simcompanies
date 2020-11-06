@@ -3,7 +3,7 @@
 {% block title %}Quero comprar{% endblock title %}
 
 {% block description %}
-  Aqui, você pode buscar produtos que outros jogadores estão vendendo.<br>Utilize os controles para buscar e solicite o produto desejado clicando em <i class="fas fa-truck"></i> ou adicione um novo produto para venda clicando em <i class="fas fa-plus"></i>.
+  Aqui, você pode buscar produtos que outros jogadores estão vendendo.<br>Utilize os controles para buscar e solicite o produto desejado clicando em <i class="fas fa-truck"></i>.<br>Possui produtos para vender? Clique em <i class="fas fa-plus"></i>.
 {% endblock description %}
 
 {% block content %}
@@ -24,12 +24,14 @@
           <form method="post" action="{% url 'market:buy' %}">
             {% csrf_token %}
             <tr>
-              <td></td>
-              <td>{{form.product}}</td>
-              <td>{{form.quality}}</td>
-              <td></td>
-              <td></td>
-              <td>
+              <td class="text-center">
+                <button class="btn btn-danger" type="reset" title="Limpar formulário"><i class="fas fa-times-circle"></i></button>
+              </td>
+              <td class="text-center">{{form.product}}</td>
+              <td class="text-center">{{form.quality}}</td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center">
                 <button class="btn btn-primary" type="submit" title="Buscar"><i class="fas fa-search"></i></button>
                 <a href="#" class="btn btn-success" title="Adicionar produto"><i class="fas fa-plus"></i></a>
               </td>
@@ -39,8 +41,8 @@
           {% for product in object_list %}
             <tr>
               <td class="text-center">
-                <a href="https://www.simcompanies.com/pt/company/{{product.owner.company_name}}/" target="_blank">
-                  {{product.owner.company_name}}
+                <a href="https://www.simcompanies.com/pt/company/{{product.owner.company_name}}/" title="{{product.owner.company_name}}" target="_blank">
+                  {{product.owner.thumbnail_logo}}
                 </a>
               </td>
               <td class="text-center">{{product.product.thumbnail}}</td>
@@ -55,7 +57,7 @@
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 1 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
@@ -64,8 +66,8 @@
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 2 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
@@ -73,59 +75,59 @@
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 3 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 4 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 5 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 6 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 7 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                   <i class="far fa-star" style="color: #ccc"></i>
                 {% elif product.quality == 8 %}
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
-                  <i class="fas fa-star" style="color: #cc5"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
+                  <i class="fas fa-star" style="color: #FFD700"></i>
                 {% endif %}
               </td>
               <td class="text-center">{{product.quantity}}</td>
@@ -136,8 +138,8 @@
                   Em aberto
                 {% endif %}
               </td>
-              <td>
-                <a href="#" class="btn btn-dark" title="Vender para empresa"><i class="fas fa-truck"></i></a>
+              <td class="text-center">
+                <a href="#" class="btn btn-dark" title="Solicitar compra"><i class="fas fa-truck"></i></a>
               </td>
             </tr>
           {% endfor %}

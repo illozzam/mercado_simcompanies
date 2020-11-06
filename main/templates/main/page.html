@@ -1,0 +1,18 @@
+{% extends "main/simple_base.html" %}
+
+{% block title %}{{page.title}}{% endblock title %}
+
+{% block description %}{{page.text}}{% endblock description %}
+
+{% block content %}
+  <div class="row my-2">
+    <div class="col-12 text-center">
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'market:buy' %}" class="btn btn-dark">Voltar</a>
+      {% else %}
+        <a href="{% url 'authentication:login' %}" class="btn btn-dark">Voltar</a>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock content %}
