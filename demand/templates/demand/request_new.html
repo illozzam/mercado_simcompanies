@@ -1,0 +1,168 @@
+{% extends "main/base.html" %}
+
+{% block title %}Pedidos{% endblock title %}
+
+{% block description %}
+  Descrição
+{% endblock description %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          {{product_market.product.thumbnail}}
+          {{product_market.product.name}}
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-4">
+              <b>Proprietário:</b><br>
+              <a href="https://www.simcompanies.com/pt/company/{{product_market.owner.company_name}}/" target="_blank">
+                <img src="{{product_market.owner.company_logo}}" height="48">{{product_market.owner.company_name}}
+              </a>
+            </div>
+            <div class="col-md-4">
+              <b>Pretende:</b>
+              {% if product_market.type == 'V' %}
+                Vender
+              {% else %}
+                Comprar
+              {% endif %}
+            </div>
+            <div class="col-md-4">
+              <b>Qualidade:</b><br>
+              {% if product_market.quality == 0 %}
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 1 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 2 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 3 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 4 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 5 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 6 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 7 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="far fa-star" style="color: #ccc"></i>
+              {% elif product_market.quality == 8 %}
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+                <i class="fas fa-star" style="color: #FFD700"></i>
+              {% endif %}
+
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-4">
+              <b>Quantidade disponível:</b> {{product_market.quantity}}
+            </div>
+            <div class="col-md-4">
+              <b>Preço:</b> {{product_market.price}}
+            </div>
+            <div class="col-md-4">
+              <b>Contrato diário?</b>
+              {% if product_market.daily_contract %}Sim{% else %}Não{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-6 offset-md-3">
+
+      <div class="card">
+        <div class="card-header">Pedido</div>
+        <div class="card-body">
+          <form action="{% url 'demand:add_request' product_market.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-inline">
+              {{form.quantity.label_tag}}&nbsp;&nbsp;&nbsp;
+              {{form.quantity}}
+              {{form.quantity.errors}}
+              <button type="submit" class="mx-2 btn btn-primary">
+                <i class="fas fa-check"></i>
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+{% endblock content %}

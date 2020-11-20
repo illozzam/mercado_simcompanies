@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include(('authentication.urls', 'authentication'), namespace='authentication')),
     path('', include(('market.urls', 'market'), namespace='market')),
     path('', include(('main.urls', 'main'), namespace='main')),
+    path('', include(('demand.urls', 'demand'), namespace='demand')),
 
     path('admin/', admin.site.urls),
 ]

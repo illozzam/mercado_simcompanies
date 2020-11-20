@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'authentication',
     'main',
     'market',
+    'demand',
 ]
 
 AUTH_USER_MODEL = 'authentication.User'

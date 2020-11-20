@@ -141,7 +141,9 @@
                 {% endif %}
               </td>
               <td class="text-center">
-                <a href="#" class="btn btn-dark" title="Solicitar compra"><i class="fas fa-truck"></i></a>
+                <a href="{% url 'demand:add_request' product.id %}" class="btn btn-dark" title="Solicitar compra">
+                  <i class="fas fa-truck"></i>
+                </a>
               </td>
             </tr>
           {% endfor %}
