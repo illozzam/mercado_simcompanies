@@ -29,3 +29,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def thumbnail_logo(self):
         return format_html('<img src="{}" height="48">', self.company_logo)
     thumbnail_logo.allow_tags = True
+
+def get_deleted_user(self):
+    '''
+    Esta função cria um usuário "User Deleted" caso não exista e retorna esse usuário, caso exista.
+    '''
+    email_deleted = 'blank@deleted.nul'
+    if User.objects.filter.get(email=email_deleted).exists():
+        return User.objects.get(email=email_deleted)
+    else:
+        user = User.objects.create(email=email_deleted, first_name='User', last_name='Deleted')
+        return user

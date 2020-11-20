@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductMarket, Log
+from .models import Product, ProductMarket
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -10,7 +10,3 @@ class ProductMarketAdmin(admin.ModelAdmin):
     list_display = ['product', 'owner', 'type', 'quantity', 'quality', 'price']
     list_editable = ['type', 'quantity', 'quality', 'price']
     ordering = ['type']
-
-@admin.register(Log)
-class LogAdmin(admin.ModelAdmin):
-    list_display = ['date_time', 'user']

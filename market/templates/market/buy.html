@@ -44,7 +44,10 @@
                   {{product.owner.thumbnail_logo}}
                 </a>
               </td>
-              <td class="text-center">{{product.product.thumbnail}}</td>
+              <td class="text-center">
+                {{product.product.thumbnail}}&nbsp;
+                {{product.product.name}}
+              </td>
               <td class="text-center">
                 {% if product.quality == 0 %}
                   <i class="far fa-star" style="color: #ccc"></i>

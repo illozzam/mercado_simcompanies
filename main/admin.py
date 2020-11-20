@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Page
+from .models import Page, Log
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
@@ -11,3 +11,7 @@ class PageAdmin(admin.ModelAdmin):
             return ['url']
         else:
             return []
+
+@admin.register(Log)
+class LogAdmin(admin.ModelAdmin):
+    list_display = ['date_time', 'user']
