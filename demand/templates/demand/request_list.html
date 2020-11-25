@@ -1,9 +1,12 @@
 {% extends "main/base.html" %}
 
+{% load quality_stars %}
+
 {% block title %}Pedidos{% endblock title %}
 
 {% block description %}
-Descrição
+<i class="fas fa-check"></i> - Marcar o pedido de outros jogadores como concluído<br>
+<i class="fas fa-trash"></i> - Remover o seu pedido para outros jogadores
 {% endblock description %}
 
 {% block content %}
@@ -11,7 +14,7 @@ Descrição
   <div class="col-md-6">
 
     <div class="card">
-      <div class="card-header">Requisições de outros jogadores</div>
+      <div class="card-header bg-dark text-white">Requisições de outros jogadores</div>
       <div class="card-body">
         {% for product in object_list %}
         {% if product.user_origin == request.user %}
@@ -26,91 +29,12 @@ Descrição
               </div>
               <div class="col-md-3 text-center">
                 <b>Qualidade:</b><br>
-                {% if product.quality == 0 %}
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 1 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 2 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 3 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 4 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 5 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 6 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 7 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 8 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                {% endif %}
+                {{product.quality|quality_stars|safe}}
               </div>
               <div class="col-md-3 text-right">
-                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                <a href="{% url 'demand:mark_done' product.id %}" title="Marcar como concluído" class="btn btn-success">
+                  <i class="fas fa-check"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -131,155 +55,78 @@ Descrição
               </div>
               <!--
               <div class="col-md-3">
-                <b>Contrato diário?</b>
-                {% if product.daily_contract %}Sim{% else %}Não{% endif %}
-              </div>
-              -->
+              <b>Contrato diário?</b>
+              {% if product.daily_contract %}Sim{% else %}Não{% endif %}
             </div>
-            {% endif %}
+          -->
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
-            {% endfor %}
+    {% endfor %}
 
+
+  </div>
+</div>
+</div>
+<div class="col-md-6">
+
+  <div class="card">
+    <div class="card-header bg-primary text-white">Minhas requisições</div>
+    <div class="card-body">
+      {% for product in object_list %}
+      {% if product.user_destination == request.user %}
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-3">
+              <b>Tipo:</b> {% if product.type == 'V' %}Venda{% else %}Compra{% endif %}
+            </div>
+            <div class="col-md-3">
+              <b>Produto:</b> {{product.product.thumbnail}} {{product.product.name}}
+            </div>
+            <div class="col-md-3 text-center">
+              <b>Qualidade:</b><br>
+              {{product.quality|quality_stars|safe}}
+            </div>
+            <div class="col-md-3 text-right">
+              <a href="{% url 'demand:mark_done' product.id %}" class="btn btn-danger">
+                <i class="fas fa-trash"></i>
+              </a>
+            </div>
           </div>
         </div>
+        <div class="card-body">
 
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-
-    <div class="card">
-      <div class="card-header">Minhas requisições</div>
-      <div class="card-body">
-        {% for product in object_list %}
-        {% if product.user_destination == request.user %}
-        <div class="card">
-          <div class="card-header">
-            <div class="row">
-              <div class="col-md-3">
-                <b>Tipo:</b> {% if product.type == 'V' %}Venda{% else %}Compra{% endif %}
-              </div>
-              <div class="col-md-3">
-                <b>Produto:</b> {{product.product.thumbnail}} {{product.product.name}}
-              </div>
-              <div class="col-md-3 text-center">
-                <b>Qualidade:</b><br>
-                {% if product.quality == 0 %}
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 1 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 2 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 3 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 4 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 5 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 6 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 7 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="far fa-star" style="color: #ccc"></i>
-                {% elif product.quality == 8 %}
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                <i class="fas fa-star" style="color: #FFD700"></i>
-                {% endif %}
-              </div>
-              <div class="col-md-3 text-right">
-                <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-              </div>
+          <div class="row">
+            <div class="col-md-4">
+              <b>Empresa:</b>
+              <a href="https://www.simcompanies.com/pt/company/{{product.user_destination.company_name}}/" title="{{product.user_destination.company_name}}" target="_blank">
+                <img src="{{product.user_destination.company_logo}}" height="48">&nbsp;{{product.user_destination.company_name}}
+              </a>
             </div>
+            <div class="col-md-4">
+              <b>Quantidade:</b> {{product.quantity}}
+            </div>
+            <div class="col-md-4">
+              <b>Preço:</b> {{product.price}}
+            </div>
+            <!--
+            <div class="col-md-3">
+            <b>Contrato diário?</b>
+            {% if product.daily_contract %}Sim{% else %}Não{% endif %}
           </div>
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-md-4">
-                <b>Empresa:</b>
-                <a href="https://www.simcompanies.com/pt/company/{{product.user_destination.company_name}}/" title="{{product.user_destination.company_name}}" target="_blank">
-                  <img src="{{product.user_destination.company_logo}}" height="48">&nbsp;{{product.user_destination.company_name}}
-                </a>
-              </div>
-              <div class="col-md-4">
-                <b>Quantidade:</b> {{product.quantity}}
-              </div>
-              <div class="col-md-4">
-                <b>Preço:</b> {{product.price}}
-              </div>
-              <!--
-              <div class="col-md-3">
-                <b>Contrato diário?</b>
-                {% if product.daily_contract %}Sim{% else %}Não{% endif %}
-              </div>
-            -->
-            </div>
-            {% endif %}
-
-            {% endfor %}
+        -->
       </div>
     </div>
-
   </div>
+  {% endif %}
+
+  {% endfor %}
+
+</div>
+</div>
+</div>
 </div>
 {% endblock content %}

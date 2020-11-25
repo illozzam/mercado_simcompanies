@@ -1,5 +1,8 @@
+from django.views import View
+from django.shortcuts import redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import RequestForm
@@ -16,7 +19,9 @@ class RequestListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        return Request.objects.filter(Q(user_origin=self.request.user) | Q(user_destination=self.request.user)).order_by('type')
+        return Request.objects.filter(done=False).filter(
+            Q(user_origin=self.request.user) | Q(user_destination=self.request.user)
+        ).order_by('type')
 
 class RequestAddView(LoginRequiredMixin, FormView):
     template_name = 'demand/request_new.html'
@@ -41,3 +46,13 @@ class RequestAddView(LoginRequiredMixin, FormView):
             return self.form_invalid(form)
 
         return super().form_valid(form)
+
+class RequestMarkDoneView(LoginRequiredMixin, View):
+    def get(self, request, **kwargs):
+        product = Request.objects.get(id=kwargs['id_request'])
+        if product.user_origin == request.user or product.user_destination == request.user:
+            product.mark_done()
+            messages.success(request, 'Pedido concluído.')
+        else:
+            messages.error(request, 'Erro ao processar requisição.')
+        return redirect('demand:list_request')

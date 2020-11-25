@@ -12,6 +12,7 @@
   {% include "includes/menu.html" with page=page %}
 
   <main role="main" class="container-fluid">
+    {% include "includes/messages.html" with messages=messages %}
     <div class="row">
       <div class="col-12">
         <h1 class="text-center">{% block title %}{% endblock title %}</h1>

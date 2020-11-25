@@ -28,6 +28,7 @@ class Request(models.Model):
     quality = models.IntegerField(default=0, choices=quality_choices)
     price = models.DecimalField(max_digits=10, decimal_places=3)
     daily_contract = models.BooleanField(default=False)
+    done = models.BooleanField(default=False)
 
     def __str__(self):
         return '{} {} {} ({} {} Q{}) {}'.format(
@@ -39,6 +40,10 @@ class Request(models.Model):
             self.quality,
             'D' if self.daily_contract else '',
         )
+
+    def mark_done(self):
+        self.done = True
+        self.save()
 
     def include_product(self, product_market, user_destination, quantity):
         if quantity <= product_market.quantity:
