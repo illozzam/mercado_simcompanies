@@ -14,4 +14,4 @@ class PageAdmin(admin.ModelAdmin):
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
-    list_display = ['date_time', 'user']
+    list_display = ['date_time', 'user', 'description']

@@ -1,6 +1,7 @@
 from django.db import models
 from authentication.models import User
 from market.models import Product
+from main.models import Log
 
 class Request(models.Model):
     quality_choices = (
@@ -56,6 +57,19 @@ class Request(models.Model):
             self.price = product_market.price
             self.daily_contract = product_market.daily_contract
             self.save()
+
+            Log.objects.create(
+                user=self.user_destination,
+                description='Requisitou {} de {} {} Q{} @ {} - {}.'.format(
+                    'compra' if product_market.type=='V' else 'venda',
+                    self.quantity,
+                    self.product.name,
+                    self.quality,
+                    self.price,
+                    self.user_origin
+
+                )
+            )
 
             if product_market.quantity == quantity:
                 product_market.delete()

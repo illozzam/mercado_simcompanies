@@ -6,6 +6,7 @@ from .models import ProductMarket
 from .forms import ProductFilterForm
 from django import forms
 from django.contrib import messages
+from main.models import Log
 
 class BuyView(LoginRequiredMixin, ListView):
     template_name = 'market/buy.html'
@@ -68,8 +69,26 @@ class NewProductView(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         if form.cleaned_data['type'] == 'V':
             messages.success(self.request, 'Produto cadastrado para venda.')
+            Log.objects.create(
+                user=self.request.user,
+                description='Cadastrou {} {} Q{} @ {} para venda.'.format(
+                    form.cleaned_data['quantity'],
+                    form.cleaned_data['product'],
+                    form.cleaned_data['quality'],
+                    form.cleaned_data['price']
+                )
+            )
         elif form.cleaned_data['type'] == 'C':
             messages.success(self.request, 'Produto cadastrado para compra.')
+            Log.objects.create(
+                user=self.request.user,
+                description='Cadastrou {} {} Q{} @ {} para compra.'.format(
+                    form.cleaned_data['quantity'],
+                    form.cleaned_data['product'],
+                    form.cleaned_data['quality'],
+                    form.cleaned_data['price']
+                )
+            )
         return super().form_valid(form)
 
 class DeleteProductView(LoginRequiredMixin, DeleteView):
@@ -78,3 +97,16 @@ class DeleteProductView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return self.model.objects.filter(owner=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        Log.objects.create(
+            user=request.user,
+            description='Deletou {} {} Q{} para {}.'.format(
+                self.get_object().quantity,
+                self.get_object().product.name,
+                self.get_object().quality,
+                'venda' if self.get_object().type=='V' else 'compra'
+            )
+        )
+        messages.success(request, 'Registro apagado.')
+        return super().delete(request, *args, **kwargs)

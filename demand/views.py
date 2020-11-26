@@ -9,6 +9,7 @@ from .forms import RequestForm
 from .models import Request
 from market.models import ProductMarket
 from django.db.models import Q
+from main.models import Log
 
 class RequestListView(LoginRequiredMixin, ListView):
     template_name = 'demand/request_list.html'
@@ -43,7 +44,10 @@ class RequestAddView(LoginRequiredMixin, FormView):
         )
         if not product_requested:
             form.add_error('quantity', 'Quantidade deve ser menor ou igual a {}'.format(product.quantity))
+            messages.error(self.request, 'Erros no formulário. Verifique e tente novamente.')
             return self.form_invalid(form)
+        else:
+            messages.success(self.request, 'Requisição cadastrada.')
 
         return super().form_valid(form)
 
@@ -52,6 +56,19 @@ class RequestMarkDoneView(LoginRequiredMixin, View):
         product = Request.objects.get(id=kwargs['id_request'])
         if product.user_origin == request.user:
             product.mark_done()
+
+            Log.objects.create(
+                user=self.request.user,
+                description='{} {} de {} Q{} @ {} - {}.'.format(
+                    'Vendeu' if product.type=='V' else 'Comprou',
+                    product.quantity,
+                    product.product.name,
+                    product.quality,
+                    product.price,
+                    product.user_destination
+                )
+            )
+
             messages.success(request, 'Pedido concluído.')
         elif product.user_destination == request.user:
             products_market = ProductMarket.objects.filter(
@@ -76,6 +93,19 @@ class RequestMarkDoneView(LoginRequiredMixin, View):
                     #description=product.description,
                     #daily_contract=product.daily_contract
                 )
+
+            Log.objects.create(
+                user=self.request.user,
+                description='Cancelou a requisição de {} de {} {} Q{} @ {} - {}.'.format(
+                    'compra' if product.type=='V' else 'venda',
+                    product.quantity,
+                    product.product.name,
+                    product.quality,
+                    product.price,
+                    product.user_origin
+                )
+            )
+
             product.delete()
             messages.success(request, 'Pedido cancelado.')
         else:
