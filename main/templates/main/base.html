@@ -7,6 +7,7 @@
   <title>Mercado SimCompanies</title>
 
   {% include "includes/css.html" %}
+  {% block css %}{% endblock css %}
 </head>
 <body>
   {% include "includes/menu.html" with page=page %}
@@ -22,5 +23,6 @@
     {% block content %}{% endblock content %}
   </main>
   {% include "includes/js.html" %}
+  {% block js %}{% endblock js %}
 </body>
 </html>

@@ -133,7 +133,7 @@ USE_TZ = True
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/buy/'
+LOGIN_REDIRECT_URL = '/demand/'
 
 
 # Static files (CSS, JavaScript, Images)

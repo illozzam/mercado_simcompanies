@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <p class="text-center">Tem certeza que deseja apagar o registro "{{ object }}"?</p>
+    <p class="text-center">
+      <a href="{% url 'demand:list_request' %}" class="btn btn-dark">Não</a>
+      <input type="submit" value="Sim">
+    </p>
+</form>
+{% endblock content %}

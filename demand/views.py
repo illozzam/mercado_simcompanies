@@ -50,9 +50,34 @@ class RequestAddView(LoginRequiredMixin, FormView):
 class RequestMarkDoneView(LoginRequiredMixin, View):
     def get(self, request, **kwargs):
         product = Request.objects.get(id=kwargs['id_request'])
-        if product.user_origin == request.user or product.user_destination == request.user:
+        if product.user_origin == request.user:
             product.mark_done()
             messages.success(request, 'Pedido concluído.')
+        elif product.user_destination == request.user:
+            products_market = ProductMarket.objects.filter(
+                owner=product.user_origin,
+                type=product.type,
+                product=product.product,
+                quality=product.quality,
+                price=product.price
+            )
+            if products_market.exists():
+                product_on_market = products_market.first()
+                product_on_market.quantity += product.quantity
+                product_on_market.save()
+            else:
+                ProductMarket.objects.create(
+                    product=product.product,
+                    owner=product.user_origin,
+                    type=product.type,
+                    quantity=product.quantity,
+                    quality=product.quality,
+                    price=product.price,
+                    #description=product.description,
+                    #daily_contract=product.daily_contract
+                )
+            product.delete()
+            messages.success(request, 'Pedido cancelado.')
         else:
             messages.error(request, 'Erro ao processar requisição.')
         return redirect('demand:list_request')

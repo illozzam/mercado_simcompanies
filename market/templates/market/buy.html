@@ -14,13 +14,14 @@
     <div class="col-12">
 
       <div class="table-responsive">
-        <table class="table">
-          <tr>
+        <table class="table table-hover">
+          <tr class="bg-dark text-white">
             <th class="text-center">Empresa</th>
             <th class="text-center">Produto</th>
             <th class="text-center">Qualidade</th>
             <th class="text-center">Quantidade</th>
             <th class="text-center">Preço</th>
+            <th></th>
           </tr>
 
           <form method="get" action="{% url 'market:buy' %}">
@@ -34,7 +35,6 @@
               <td class="text-center"></td>
               <td class="text-center">
                 <button class="btn btn-primary" type="submit" title="Buscar"><i class="fas fa-search"></i></button>
-                <a href="#" class="btn btn-success" title="Adicionar produto"><i class="fas fa-plus"></i></a>
               </td>
             </tr>
           </form>
@@ -43,7 +43,7 @@
             <tr>
               <td class="text-center">
                 <a href="https://www.simcompanies.com/pt/company/{{product.owner.company_name}}/" title="{{product.owner.company_name}}" target="_blank">
-                  {{product.owner.thumbnail_logo}}
+                  {{product.owner.thumbnail_logo}}<br>{{product.owner.company_name}}
                 </a>
               </td>
               <td class="text-center">
@@ -62,10 +62,12 @@
                 {% endif %}
               </td>
               <td class="text-center">
-                {% if product.user_origin != request.user %}
+                {% if product.owner != request.user %}
                   <a href="{% url 'demand:add_request' product.id %}" class="btn btn-dark" title="Solicitar compra">
                     <i class="fas fa-truck"></i>
                   </a>
+                {% else %}
+                  <a href="{% url 'market:delete_product' product.id %}" class="btn btn-danger" title="Apagar registro"><i class="fas fa-trash"></i></a>
                 {% endif %}
               </td>
             </tr>

@@ -31,12 +31,13 @@ class ProductMarket(models.Model):
         ('C', 'Comprando'),
     )
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='produto')
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=1, choices=type_choices, null=True, blank=True)
-    quantity = models.IntegerField()
-    quality = models.IntegerField(default=0, choices=quality_choices)
-    price = models.DecimalField(max_digits=10, decimal_places=3)
+    type = models.CharField(max_length=1, choices=type_choices, null=True, blank=True, verbose_name='Deseja comprar ou vender?')
+    quantity = models.IntegerField(verbose_name='quantidade')
+    quality = models.IntegerField(default=0, choices=quality_choices, verbose_name='qualidade')
+    price = models.DecimalField(max_digits=10, decimal_places=3, verbose_name='preço')
+    description = models.TextField(verbose_name='Observações', null=True, blank=True)
     daily_contract = models.BooleanField(default=False)
 
     def __str__(self):

@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+
+{% block title %}Adicionar produto para Compra / Venda{% endblock title %}
+
+{% block content %}
+  <form action="{% url 'market:new_product' %}" method="post">
+    {% csrf_token %}
+    <table class="table">
+      {{form.as_table}}
+
+      <tr>
+        <td colspan="2" class="text-center">
+          <a href="{% url 'demand:list_request' %}" class="btn btn-dark">Voltar</a>
+          <input type="submit" class="btn btn-primary" value="Enviar">
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock content %}
+
+{% block js %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('input[type="number"]').addClass('form-control')
+      $('select').addClass('form-control')
+      $('textarea').addClass('form-control')
+    })
+  </script>
+{% endblock js %}

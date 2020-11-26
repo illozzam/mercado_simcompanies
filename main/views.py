@@ -6,7 +6,7 @@ from .models import Page
 
 class InitialView(View):
     def get(self, request, **kwargs):
-        return redirect(resolve_url('market:buy'))
+        return redirect('demand:list_request')
 
 class PageView(TemplateView):
     template_name = 'main/page.html'

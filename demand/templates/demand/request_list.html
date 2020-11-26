@@ -2,11 +2,17 @@
 
 {% load quality_stars %}
 
-{% block title %}Pedidos{% endblock title %}
+{% block title %}
+  Pedidos<br>
+  <a href="{% url 'market:new_product' %}" class="btn btn-dark">
+    <i class="fas fa-plus"></i>&nbsp;Adicionar produto para compra / venda
+  </a>
+{% endblock title %}
 
 {% block description %}
-<i class="fas fa-check"></i> - Marcar o pedido de outros jogadores como concluído<br>
-<i class="fas fa-trash"></i> - Remover o seu pedido para outros jogadores
+<i class="fas fa-check"></i> - Marcar a requisição como concluída<br>
+<i class="fas fa-trash"></i> - Desistir da requisição<br>
+<i class="fas fa-warehouse"></i> - Ir para o seu Armazém (abre uma nova aba)
 {% endblock description %}
 
 {% block content %}
@@ -22,7 +28,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-md-3">
-                <b>Tipo:</b> {% if product.type == 'V' %}Venda{% else %}Compra{% endif %}
+                <b>Quero:</b> {% if product.type == 'V' %}Comprar{% else %}Vender{% endif %}
               </div>
               <div class="col-md-3">
                 <b>Produto:</b> {{product.product.thumbnail}} {{product.product.name}}
@@ -32,6 +38,9 @@
                 {{product.quality|quality_stars|safe}}
               </div>
               <div class="col-md-3 text-right">
+                <a href="https://www.simcompanies.com/pt/headquarters/warehouse/" title="Meu Armazém" target="_blank" class="btn btn-dark">
+                  <i class="fas fa-warehouse"></i>
+                </a>
                 <a href="{% url 'demand:mark_done' product.id %}" title="Marcar como concluído" class="btn btn-success">
                   <i class="fas fa-check"></i>
                 </a>
@@ -81,7 +90,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-md-3">
-              <b>Tipo:</b> {% if product.type == 'V' %}Venda{% else %}Compra{% endif %}
+              <b>Quero:</b> {% if product.type == 'V' %}Comprar{% else %}Vender{% endif %}
             </div>
             <div class="col-md-3">
               <b>Produto:</b> {{product.product.thumbnail}} {{product.product.name}}
@@ -91,6 +100,9 @@
               {{product.quality|quality_stars|safe}}
             </div>
             <div class="col-md-3 text-right">
+              <a href="https://www.simcompanies.com/pt/headquarters/warehouse/" title="Meu Armazém" target="_blank" class="btn btn-dark">
+                <i class="fas fa-warehouse"></i>
+              </a>
               <a href="{% url 'demand:mark_done' product.id %}" class="btn btn-danger">
                 <i class="fas fa-trash"></i>
               </a>
@@ -102,8 +114,8 @@
           <div class="row">
             <div class="col-md-4">
               <b>Empresa:</b>
-              <a href="https://www.simcompanies.com/pt/company/{{product.user_destination.company_name}}/" title="{{product.user_destination.company_name}}" target="_blank">
-                <img src="{{product.user_destination.company_logo}}" height="48">&nbsp;{{product.user_destination.company_name}}
+              <a href="https://www.simcompanies.com/pt/company/{{product.user_origin.company_name}}/" title="{{product.user_origin.company_name}}" target="_blank">
+                <img src="{{product.user_origin.company_logo}}" height="48">&nbsp;{{product.user_origin.company_name}}
               </a>
             </div>
             <div class="col-md-4">

@@ -1,8 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, DeleteView
 from django.urls import reverse_lazy
 from .models import ProductMarket
 from .forms import ProductFilterForm
+from django import forms
+from django.contrib import messages
 
 class BuyView(LoginRequiredMixin, ListView):
     template_name = 'market/buy.html'
@@ -55,3 +58,23 @@ class SellView(LoginRequiredMixin, ListView):
         context['page'] = 'sell'
         context['form'] = ProductFilterForm(self.request.GET)
         return context
+
+class NewProductView(LoginRequiredMixin, CreateView):
+    model = ProductMarket
+    fields = ['product', 'type', 'quantity', 'quality', 'price']
+    success_url = reverse_lazy('demand:list_request')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        if form.cleaned_data['type'] == 'V':
+            messages.success(self.request, 'Produto cadastrado para venda.')
+        elif form.cleaned_data['type'] == 'C':
+            messages.success(self.request, 'Produto cadastrado para compra.')
+        return super().form_valid(form)
+
+class DeleteProductView(LoginRequiredMixin, DeleteView):
+    model = ProductMarket
+    success_url = reverse_lazy('demand:list_request')
+
+    def get_queryset(self):
+        return self.model.objects.filter(owner=self.request.user)

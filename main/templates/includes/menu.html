@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item{% if page == 'demand' %} active{% endif %}">
+        <a class="nav-link" href="{% url 'demand:list_request' %}">Pedidos</a>
+      </li>
       <li class="nav-item{% if page == 'buy' %} active{% endif %}">
         <a class="nav-link" href="{% url 'market:buy' %}">Quero Comprar</a>
       </li>
       <li class="nav-item{% if page == 'sell' %} active{% endif %}">
         <a class="nav-link" href="{% url 'market:sell' %}">Quero Vender</a>
-      </li>
-      <li class="nav-item{% if page == 'demand' %} active{% endif %}">
-        <a class="nav-link" href="{% url 'demand:list_request' %}">Pedidos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'authentication:logout' %}">Sair</a>
