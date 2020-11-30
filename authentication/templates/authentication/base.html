@@ -11,8 +11,15 @@
 </head>
 
 <body class="text-center">
-  {% block content %}
-  {% endblock content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        {% include "includes/messages.html" with messages=messages %}
+      </div>
+    </div>
+
+    {% block content %}{% endblock content %}
+  </div>
 
   <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
